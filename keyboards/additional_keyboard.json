@@ -1,0 +1,25 @@
+{
+    "one_time": true,
+    "buttons": [
+        [{
+            "action": {
+                "type": "text",
+                "label": "Расписание преподователей"
+            },
+            "color": "primary"
+        }],
+        [{
+            "action": {
+            "type": "text",
+            "label": "назад"
+            }
+        },
+        {
+            "action": {
+                "type": "text",
+                "label": "info"
+            }
+        }]
+    ],
+    "inline": false
+}

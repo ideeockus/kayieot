@@ -1,0 +1,25 @@
+{
+    "one_time": false,
+    "buttons": [
+        [{
+            "action": {
+                "type": "text",
+                "label": "Расписание"
+            },
+            "color": "primary"
+        }],
+        [{
+            "action": {
+            "type": "text",
+            "label": "дополнительно"
+            }
+        },
+        {
+            "action": {
+                "type": "text",
+                "label": "info"
+            }
+        }]
+    ],
+    "inline": false
+}

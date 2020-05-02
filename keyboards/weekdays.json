@@ -1,0 +1,48 @@
+{
+    "one_time": true,
+    "buttons": [
+        [{
+            "action": {
+                "type": "text",
+                "label": "понедельник"
+            },
+            "color": "secondary"
+        },
+        {
+            "action": {
+                "type": "text",
+                "label": "вторник"
+            },
+            "color": "secondary"
+        }],
+        [{
+            "action": {
+                "type": "text",
+                "label": "среда"
+            },
+            "color": "secondary"
+        },
+        {
+            "action": {
+                "type": "text",
+                "label": "четверг"
+            },
+            "color": "secondary"
+        }],
+        [{
+            "action": {
+                "type": "text",
+                "label": "пятница"
+            },
+            "color": "secondary"
+        },
+        {
+            "action": {
+                "type": "text",
+                "label": "суббота"
+            },
+            "color": "secondary"
+        }],
+    ],
+    "inline": true
+}
