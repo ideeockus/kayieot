@@ -1,5 +1,6 @@
 from enum import Enum
 import json
+import os
 
 users_storage = {}
 keyboards = {}
@@ -33,6 +34,15 @@ def loadStorage():
             pass
 
 def getConfig():
+    try:
+        vk_key = os.environ.get('VK_KEY')
+        group_id = os.environ.get('GROUP_ID')
+        if(vk_key==None or group_id==None): raise KeyError
+        config = {'VK_KEY': vk_key, 'GROUP_ID': group_id}
+        print(config)
+        return config
+    except KeyError:
+        print("os environments VK_KEY, GROUP_ID UNFOUND")
     with open("config.json", "r") as config_file:
         config = json.load(config_file)
         return config

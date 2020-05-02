@@ -1,4 +1,4 @@
 config.json
 vkApiServer.log
 __pycache__/*
- handlers/__pycache__/*
+handlers/__pycache__/*

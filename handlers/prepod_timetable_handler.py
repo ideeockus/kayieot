@@ -11,9 +11,9 @@ def handle(event):
 
     prepods_list = getOptionsList(r_msg)
     if(len(prepods_list)<1):
-        s_msg = "Не могу найти преподователя "+r_msg
+        s_msg = "Не могу найти преподавателя "+r_msg
         keyboard = keyboards['main']
-        users_storage[user_id]['state'] = state.INACTION
+        users_storage[user_id]['state'] = state.WAIT_PREPOD_NAME
         #s_msg_obj = make_s_msg_obj(s_msg, keyboard)
         #return s_msg_obj
     if(len(prepods_list)>1 and len(prepods_list)<=10):
@@ -30,7 +30,7 @@ def handle(event):
         #return s_msg_obj
     if(len(prepods_list)==1):
         prepod_timetable = getPrepodTimetable(prepods_list[0])
-        s_msg = f"Расписание преподователя {prepods_list[0]['lecturer']}\n{formatPrepodTimetable(prepod_timetable)}"
+        s_msg = f"Расписание преподавателя {prepods_list[0]['lecturer']}\n{formatPrepodTimetable(prepod_timetable)}"
         keyboard = keyboards['main']
         users_storage[user_id]['state'] = state.INACTION
         #s_msg_obj = make_s_msg_obj(s_msg, keyboard)
@@ -77,7 +77,8 @@ def formatPrepodTimetable(prepod_timetable):
             disciplType = lesson['disciplType'].strip()
             disciplName = lesson['disciplName'].strip()
             group = lesson['group'].strip()
-            result = result+ f"{build_aud} {dayTime} - {group}\n"
+            dayDate = lesson['dayDate'].strip()
+            result = result+ f"{dayDate} {build_aud} {dayTime} - {disciplType} у {group}\n"
             logging.debug(result)
         result=result+"\n"
     return(result)

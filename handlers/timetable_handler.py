@@ -13,7 +13,7 @@ def handle(event):
     if(len(groups_list)<1):
         s_msg = "Не могу найти группу "+r_msg
         keyboard = keyboards['main']
-        users_storage[user_id]['state'] = state.INACTION
+        users_storage[user_id]['state'] = state.WAIT_GROUP
         #s_msg_obj = make_s_msg_obj(s_msg, keyboard)
         #return s_msg_obj
     if(len(groups_list)>1 and len(groups_list)<=10):
@@ -77,7 +77,8 @@ def formatTimetable(timetable):
             dayTime = lesson['dayTime'].strip()
             disciplType = lesson['disciplType'].strip()
             disciplName = lesson['disciplName'].strip()
-            result = result+ f"{build_aud} {dayTime} {disciplType} - {disciplName}\n"
+            dayDate = lesson['dayDate'].strip()
+            result = result+ f"{dayDate} {build_aud} {dayTime} {disciplType} - {disciplName}\n"
             logging.debug(result)
         result=result+"\n"
     return(result)

@@ -15,7 +15,7 @@ def handle(event):
     if(not (user_id in users_storage)): # новый пользователь
         users_storage[user_id] = {}
         users_storage[user_id]['state'] = state.INACTION
-        s_msg = "Привет, жми на кнопки" 
+        s_msg = "Жми на кнопки" 
         keyboard = keyboards['main']
         print("new user| inactive status")
         logging.info("new user| inactive status")
@@ -28,13 +28,21 @@ def handle(event):
 
 
     if(users_storage[user_id]['state']==state.WAIT_GROUP): # 
-        print("your stat is wait for group")
+        print("user stat is wait for group")
+        if(len(r_msg)>150): # лишком длинное сообщение
+            s_msg = "Напиши покороче, пожалуйста"
+            keyboard = keyboards['main']
+            return make_s_msg_obj(s_msg, keyboard)
         s_msg_obj = timetable_handler.handle(event)
         return s_msg_obj
 
 
     if(users_storage[user_id]['state']==state.WAIT_PREPOD_NAME): # 
-        print("your stat is wait for prepod name")
+        print("user stat is wait for prepod name")
+        if(len(r_msg)>150): # cлишком длинное сообщение
+            s_msg = "Напиши покороче, пожалуйста"
+            keyboard = keyboards['main']
+            return make_s_msg_obj(s_msg, keyboard)
         s_msg_obj = prepod_timetable_handler.handle(event)
         return s_msg_obj
 

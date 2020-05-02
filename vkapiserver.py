@@ -53,7 +53,7 @@ class vkApiServer:
         logging.debug(response) # дебагаем
         if('error' in response):
             raise VkApiServerResponseError(response)
-        print(response)
+        #print(response)
         return response
 
     def addKeyboard(self, name, path):
