@@ -67,9 +67,11 @@ def formatTimetable(timetable):
     tabledays = sorted(tabledays) # сортировка дней в расписании
     for day in tabledays:
         #print(day)
-        result = result + weekdays[int(day)] + "\n"
+        result = result + "📆" + weekdays[int(day)] + "\n"
         for lesson in timetable[day]:
             buildNum = lesson['buildNum'].strip().replace("-", "")
+            buildSymbol = "🏟" if (buildNum.find("ОЛИМП")>-1) else  "🏛"
+            buildNum = buildNum + buildSymbol
             audNum = lesson['audNum'].strip().replace("-", "")
             build_aud = f"[{buildNum}, {audNum}]" # здание и аудитория
             if((buildNum=="") or (audNum=="")): build_aud=f"[{buildNum}{audNum}]"
@@ -78,8 +80,10 @@ def formatTimetable(timetable):
             disciplType = lesson['disciplType'].strip()
             disciplName = lesson['disciplName'].strip()
             dayDate = lesson['dayDate'].strip()
-            result = result+ f"{dayDate} {build_aud} {dayTime} {disciplType} - {disciplName}\n"
-            logging.debug(result)
+            if(dayDate=="ежн"): dayDate=""
+            if(len(dayDate)>1): dayDate=f"({dayDate})"
+            result = result+ f"{build_aud} {dayDate} {dayTime} {disciplType} - {disciplName}\n"
+            #logging.debug(result)
         result=result+"\n"
     return(result)
 

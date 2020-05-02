@@ -47,10 +47,10 @@ class vkApiServer:
         api_url = "https://api.vk.com/method/" # url для обращения к API
         params.update({'access_token': self.group_key, 'v': self.api_version}) # additional keys
         logging.debug("useAPIMethod "+method) # дебагаем
-        logging.debug(params) # дебагаем
+        #logging.debug(params) # дебагаем
         r = requests.post(api_url+method, params)
         response = r.json()
-        logging.debug(response) # дебагаем
+        #logging.debug(response) # дебагаем
         if('error' in response):
             raise VkApiServerResponseError(response)
         #print(response)

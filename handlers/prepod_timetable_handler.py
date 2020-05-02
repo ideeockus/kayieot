@@ -66,20 +66,24 @@ def formatPrepodTimetable(prepod_timetable):
     tabledays = sorted(tabledays) # сортировка дней в расписании
     for day in tabledays:
         #print(day)
-        result = result + weekdays[int(day)] + "\n"
+        result = result + "📆" + weekdays[int(day)] + "\n"
         for lesson in prepod_timetable[day]:
             buildNum = lesson['buildNum'].strip().replace("-", "")
+            buildSymbol = "🏟" if (buildNum.find("ОЛИМП")>-1) else  "🏛"
+            buildNum = buildNum + buildSymbol
             audNum = lesson['audNum'].strip().replace("-", "")
             build_aud = f"[{buildNum}, {audNum}]" # здание и аудитория
-            #if((buildNum=="") or (audNum=="")): build_aud=f"[{buildNum}{audNum}]"
-            #if((buildNum=="") and (audNum=="")): build_aud=""
+            if((buildNum=="") or (audNum=="")): build_aud=f"[{buildNum}{audNum}]"
+            if((buildNum=="") and (audNum=="")): build_aud=""
             dayTime = lesson['dayTime'].strip()
             disciplType = lesson['disciplType'].strip()
             disciplName = lesson['disciplName'].strip()
             group = lesson['group'].strip()
             dayDate = lesson['dayDate'].strip()
-            result = result+ f"{dayDate} {build_aud} {dayTime} - {disciplType} у {group}\n"
-            logging.debug(result)
+            if(dayDate=="ежн"): dayDate=""
+            if(len(dayDate)>1): dayDate=f"({dayDate})"
+            result = result+ f"{build_aud} {dayDate} {dayTime} - {disciplType}  у {group}\n"
+            #logging.debug(result)
         result=result+"\n"
     return(result)
 

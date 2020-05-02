@@ -33,14 +33,15 @@ def gotEvents(events):
             vkapiserv.useMethod("messages.send", {'user_id': user_id, 'random_id': random_id, 'message': s_msg, 'keyboard': keyboard})
     #storage.saveStorage()
     vkapiserv.updateLongPoll()
-    vkapiserv.getLongPoll(gotEvents)
+    #vkapiserv.getLongPoll(gotEvents) 
 
 def start_bot():
-    try:
-        vkapiserv.getLongPoll(gotEvents)
-    except Exception as e:
-        print("fatal error")
-        print(e)
-        start_bot() # "Внутри самого себя не найдешь бессмертия" - Антуан де Сент-Экзюпери
+    while(True):
+        try:
+            vkapiserv.getLongPoll(gotEvents) # "Внутри самого себя не найдешь бессмертия" - Антуан де Сент-Экзюпери
+        except Exception as e:
+            print("fatal error")
+            print(e)
+            vkapiserv.updateLongPoll()
 
 start_bot()

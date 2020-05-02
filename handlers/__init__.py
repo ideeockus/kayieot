@@ -15,11 +15,11 @@ def handle(event):
     if(not (user_id in users_storage)): # новый пользователь
         users_storage[user_id] = {}
         users_storage[user_id]['state'] = state.INACTION
-        s_msg = "Жми на кнопки" 
-        keyboard = keyboards['main']
+        #s_msg = "Жми на кнопки" 
+        #keyboard = keyboards['main']
         print("new user| inactive status")
         logging.info("new user| inactive status")
-        return make_s_msg_obj(s_msg, keyboard)
+        #return make_s_msg_obj(s_msg, keyboard)
 
 
     if(r_msg in command_handler.commands):
