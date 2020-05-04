@@ -37,11 +37,12 @@ def gotEvents(events):
 
 def start_bot():
     while(True):
-        try:
+        vkapiserv.getLongPoll(gotEvents)
+    """    try:
             vkapiserv.getLongPoll(gotEvents) # "Внутри самого себя не найдешь бессмертия" - Антуан де Сент-Экзюпери
         except Exception as e:
             print("fatal error")
             print(e)
-            vkapiserv.updateLongPoll()
+            vkapiserv.updateLongPoll()"""
 
 start_bot()

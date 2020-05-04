@@ -8,7 +8,7 @@ def timetable(user_id):
     #formated_timetable = formatTimetable(timetable)
     #return formated_timetable
     s_msg = "Хорошо, скажи свою группу"
-    keyboard = keyboards['empty']
+    keyboard = keyboards['main']
     users_storage[user_id]['state'] = state.WAIT_GROUP
     return make_s_msg_obj(s_msg, keyboard)
 

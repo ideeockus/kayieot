@@ -16,13 +16,13 @@ def handle(event):
         users_storage[user_id]['state'] = state.WAIT_PREPOD_NAME
         #s_msg_obj = make_s_msg_obj(s_msg, keyboard)
         #return s_msg_obj
-    if(len(prepods_list)>1 and len(prepods_list)<=10):
+    if(len(prepods_list)>1 and len(prepods_list)<=6):
         s_msg = "уточните, пожалуйста"
         keyboard = make_optionprepod_keyboard(prepods_list)
         users_storage[user_id]['state'] = state.WAIT_PREPOD_NAME
         #s_msg_obj = make_s_msg_obj(s_msg, keyboard)
         #return s_msg_obj
-    if(len(prepods_list)>10):
+    if(len(prepods_list)>6):
         s_msg = "слишком много вариантов, уточните"
         keyboard = keyboards['main']
         users_storage[user_id]['state'] = state.WAIT_PREPOD_NAME
@@ -89,9 +89,18 @@ def formatPrepodTimetable(prepod_timetable):
 
 def make_optionprepod_keyboard(prepods_list):
     keyboard = {"inline": True, "buttons": []}
+    """row = -1
     for i, prepod in enumerate(prepods_list): # The enumerate function gives us an iterable where each element is a tuple that contains the index of the item and the original item value
-        keyboard['buttons'].append([{'action': {'type': "text", 'label': "prepod_num"}}])
+        if((i+1)==len(prepods_list)):
+            keyboard['buttons'][row].append({'action': {'type': "text", 'label': prepod['lecturer']}})
+            continue
+        if(i%2==0):
+            keyboard['buttons'].append([]) # обавление новой строки
+            row+=1
+        keyboard['buttons'][row].append({'action': {'type': "text", 'label': prepod['lecturer']}})"""
+    for i, prepod in enumerate(prepods_list): # The enumerate function gives us an iterable where each element is a tuple that contains the index of the item and the original item value
+        keyboard['buttons'].append([{'action': {'type': "text", 'label': prepod['lecturer']}}])
         #keyboard['buttons'][i]['action']['type'] = "text"
-        keyboard['buttons'][i][0]['action']['label'] = prepod['lecturer']
+        #keyboard['buttons'][i][0]['action']['label'] = prepod['lecturer']
     keyboard = json.dumps(keyboard) # перевод словаря в json формат
     return keyboard

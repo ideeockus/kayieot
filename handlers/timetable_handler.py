@@ -88,10 +88,33 @@ def formatTimetable(timetable):
     return(result)
 
 def make_optiongroup_keyboard(groups_list):
+    # максимальный размер inline клавиатуры 5х6
     keyboard = {"inline": True, "buttons": []}
+
+    """buttons_count = len(groups_list)
+    rows = buttons_count // 2
+    #cols = buttons_count % 2
+    template = []
+    for i in range(0, rows): # 0, 1, 2, ... (rows) - не включает rows
+        template.append([])
+        template[i].append([])
+        template[i].append([])
+        if(i==rows-1 and buttons_count%2>0): template[i].append([]) # если последний ряд и кол-во кнопок нечетно"""
+    row = -1
     for i, group in enumerate(groups_list): # The enumerate function gives us an iterable where each element is a tuple that contains the index of the item and the original item value
+        if((i+1)==len(groups_list)):
+            keyboard['buttons'][row].append({'action': {'type': "text", 'label': group['group']}})
+            continue
+        if(i%2==0):
+            keyboard['buttons'].append([]) # обавление новой строки
+            row+=1
+        keyboard['buttons'][row].append({'action': {'type': "text", 'label': group['group']}})
+        
+        #keyboard['buttons'][i]['action']['type'] = "text"
+        #keyboard['buttons'][i][0]['action']['label'] = 
+    """for i, group in enumerate(groups_list): # The enumerate function gives us an iterable where each element is a tuple that contains the index of the item and the original item value
         keyboard['buttons'].append([{'action': {'type': "text", 'label': "group_num"}}])
         #keyboard['buttons'][i]['action']['type'] = "text"
-        keyboard['buttons'][i][0]['action']['label'] = group['group']
+        keyboard['buttons'][i][0]['action']['label'] = group['group']"""
     keyboard = json.dumps(keyboard) # перевод словаря в json формат
     return keyboard
