@@ -15,7 +15,7 @@ Is minimalistic VK bot for students of KNRTU-KAI
   
 ## setup on your server
 first install requirements
-`ip install -r requirements.txt`
+`pip install -r requirements.txt`
 
 ##### configure 
 create file named config.json
