@@ -4,7 +4,14 @@
         [{
             "action": {
                 "type": "text",
-                "label": "Расписание"
+                "label": "расписание"
+            },
+            "color": "primary"
+        }],
+        [{
+            "action": {
+                "type": "text",
+                "label": "расписание преподователей"
             },
             "color": "primary"
         }],
@@ -12,12 +19,6 @@
             "action": {
             "type": "text",
             "label": "дополнительно"
-            }
-        },
-        {
-            "action": {
-                "type": "text",
-                "label": "info"
             }
         }]
     ],

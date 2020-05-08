@@ -1,4 +1,6 @@
-# KAYIEOT
+# KAYIEOT 
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![security: bandit](https://img.shields.io/badge/security-bandit-blueviolet.svg)](https://github.com/PyCQA/bandit)
 
 Is minimalistic VK bot for students of KNRTU-KAI
 
@@ -15,7 +17,7 @@ Is minimalistic VK bot for students of KNRTU-KAI
   
 ## setup on your server
 first install requirements
-`pip install -r requirements.txt`
+`ip install -r requirements.txt`
 
 ##### configure 
 create file named config.json

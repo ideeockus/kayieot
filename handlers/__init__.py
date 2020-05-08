@@ -32,7 +32,7 @@ def handle(event):
         if(len(r_msg)>150): # лишком длинное сообщение
             s_msg = "Напиши покороче, пожалуйста"
             keyboard = keyboards['main']
-            return make_s_msg_obj(s_msg, keyboard)
+            return make_s_msg_obj(s_msg=s_msg, keyboard=keyboard)
         s_msg_obj = timetable_handler.handle(event)
         return s_msg_obj
 
@@ -42,7 +42,7 @@ def handle(event):
         if(len(r_msg)>150): # cлишком длинное сообщение
             s_msg = "Напиши покороче, пожалуйста"
             keyboard = keyboards['main']
-            return make_s_msg_obj(s_msg, keyboard)
+            return make_s_msg_obj(s_msg=s_msg, keyboard=keyboard)
         s_msg_obj = prepod_timetable_handler.handle(event)
         return s_msg_obj
 
@@ -52,6 +52,5 @@ def handle(event):
     s_msg = "что ты от меня хочешь?"
     keyboard = keyboards['main']
     users_storage[user_id]['state'] = state.INACTION
-    return make_s_msg_obj(s_msg, keyboard)
-
+    return make_s_msg_obj(s_msg=s_msg, keyboard=keyboard)
 

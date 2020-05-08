@@ -1,6 +1,6 @@
 import requests
 import json
-from storage import make_s_msg_obj, users_storage, keyboards, state
+from storage import make_s_msg_obj, users_storage, keyboards, state, timetable_output_mode
 import logging
 
 def handle(event):
@@ -8,8 +8,13 @@ def handle(event):
     r_msg = event['object']['message']['text'] # received message
     #s_msg = "что-то пошло не так"
     #keyboard = keyboards['main']
+    groups_list = []
+    try:
+        groups_list = getOptionsList(r_msg)
+    except Exception as e:
+        print("Ошибка при запросе расписания")
+        print(e)
 
-    groups_list = getOptionsList(r_msg)
     if(len(groups_list)<1):
         s_msg = "Не могу найти группу "+r_msg
         keyboard = keyboards['main']
@@ -35,7 +40,7 @@ def handle(event):
         users_storage[user_id]['state'] = state.INACTION
         #s_msg_obj = make_s_msg_obj(s_msg, keyboard)
         #return s_msg_obj
-    s_msg_obj = make_s_msg_obj(s_msg, keyboard)
+    s_msg_obj = make_s_msg_obj(s_msg=s_msg, keyboard=keyboard)
     return s_msg_obj
 
 
@@ -66,16 +71,17 @@ def formatTimetable(timetable):
     tabledays = timetable.keys() # список дней в расписании
     tabledays = sorted(tabledays) # сортировка дней в расписании
     for day in tabledays:
-        #print(day)
         result = result + "📆" + weekdays[int(day)] + "\n"
         for lesson in timetable[day]:
             buildNum = lesson['buildNum'].strip().replace("-", "")
             buildSymbol = "🏟" if (buildNum.find("ОЛИМП")>-1) else  "🏛"
-            buildNum = buildNum + buildSymbol
+            #buildNum = buildNum + buildSymbol
             audNum = lesson['audNum'].strip().replace("-", "")
-            build_aud = f"[{buildNum}, {audNum}]" # здание и аудитория
-            if((buildNum=="") or (audNum=="")): build_aud=f"[{buildNum}{audNum}]"
+            build_aud = f"[{buildNum}{buildSymbol}, {audNum}]" # здание и аудитория
+            if(buildNum==""): build_aud=f"[{audNum}]"
+            if(audNum==""): build_aud=f"[{buildNum}{buildSymbol}]"
             if((buildNum=="") and (audNum=="")): build_aud=""
+            #if(buildNum!=""): buildNum = buildNum + buildSymbol
             dayTime = lesson['dayTime'].strip()
             disciplType = lesson['disciplType'].strip()
             disciplName = lesson['disciplName'].strip()

@@ -1,5 +1,6 @@
 from . import additional_handler
 from . import information_handler
+import storage
 from storage import make_s_msg_obj, users_storage, keyboards, state
 
 
@@ -10,7 +11,7 @@ def timetable(user_id):
     s_msg = "Хорошо, скажи свою группу"
     keyboard = keyboards['main']
     users_storage[user_id]['state'] = state.WAIT_GROUP
-    return make_s_msg_obj(s_msg, keyboard)
+    return make_s_msg_obj(s_msg=s_msg, keyboard=keyboard)
 
 def additional(user_id):
     """s_msg = "Дополнительные параметры пока в разработке"
@@ -22,22 +23,37 @@ def additional(user_id):
 
 def information(user_id):
     s_msg = information_handler.get_information()
-    keyboard = keyboards['main']
+    keyboard = keyboards['additional']
     users_storage[user_id]['state'] = state.INACTION
-    return make_s_msg_obj(s_msg, keyboard)
+    return make_s_msg_obj(s_msg=s_msg, keyboard=keyboard)
 
 def prepod_timetable(user_id):
-    s_msg = "Напиши имя"
+    s_msg = "Введи имя преподавателя"
     keyboard = keyboards['main']
     users_storage[user_id]['state'] = state.WAIT_PREPOD_NAME
-    return make_s_msg_obj(s_msg, keyboard)
+    return make_s_msg_obj(s_msg=s_msg, keyboard=keyboard)
+
+def switch_timetable_output_mode(user_id):
+    storage.timetable_output_mode = "image" if storage.timetable_output_mode=="text" else "text"
+    s_msg = "Режим вывода расписания: "+ ("текст" if storage.timetable_output_mode=="text" else "картинка")
+    keyboard = keyboards['additional']
+    users_storage[user_id]['state'] = state.INACTION
+    return make_s_msg_obj(s_msg=s_msg, keyboard=keyboard)
+
+def home(user_id):
+    s_msg = "Переключаю"
+    keyboard = keyboards['main']
+    users_storage[user_id]['state'] = state.INACTION
+    return make_s_msg_obj(s_msg=s_msg, keyboard=keyboard)
 
 
 commands = {
-    'Расписание': timetable,
+    'расписание': timetable,
     'дополнительно': additional,
     'info': information,
-    'Расписание преподователей': prepod_timetable
+    'расписание преподователей': prepod_timetable,
+    'изменить вывод расписания': switch_timetable_output_mode,
+    'назад': home
     }
 
 

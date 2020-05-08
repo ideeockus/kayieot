@@ -1,4 +1,7 @@
 config.json
-vkApiServer.log
+testing/*
+tests/*
+*.log
+.bandit
 __pycache__/*
-handlers/__pycache__/*
+*/__pycache__/*

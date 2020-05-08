@@ -3,6 +3,13 @@
     "buttons": [
         [{
             "action": {
+                "type": "text",
+                "label": "изменить вывод расписания"
+            },
+            "color": "primary"
+        }],
+        [{
+            "action": {
             "type": "text",
             "label": "назад"
             }

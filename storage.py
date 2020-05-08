@@ -4,6 +4,7 @@ import os
 
 users_storage = {}
 keyboards = {}
+timetable_output_mode = "text"
 
 def addKeyboard(name, path):
         with open(path, 'r', encoding="utf-8") as keyboard: # чтение файла с объектом клавиатуры
@@ -15,8 +16,16 @@ class state(Enum):
     INACTION = "state_inaction"
     WAIT_PREPOD_NAME = "state_wait_for_prepod_name"
 
-def make_s_msg_obj(s_msg, keyboard):
+"""def make_s_msg_obj(s_msg, keyboard):
     s_msg_obj = { 's_msg': s_msg, 'keyboard':keyboard }
+    #print(s_msg_obj)
+    return s_msg_obj"""
+def make_s_msg_obj(**kwargs): # обычно s_msg и keyboard
+    s_msg_obj = {}
+    for key, value in kwargs.items():
+        if(key=="s_msg"): key = "message"
+        s_msg_obj[key] = value
+    #s_msg_obj = { 's_msg': s_msg, 'keyboard':keyboard }
     #print(s_msg_obj)
     return s_msg_obj
 
