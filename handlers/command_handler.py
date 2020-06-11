@@ -47,12 +47,30 @@ def home(user_id):
     return make_s_msg_obj(s_msg=s_msg, keyboard=keyboard)
 
 
+def timetable_exams(user_id):
+    #timetable = getTimetable()
+    #formated_timetable = formatTimetable(timetable)
+    #return formated_timetable
+    s_msg = "Введи свою группу"
+    keyboard = keyboards['main']
+    users_storage[user_id]['state'] = state.WAIT_GROUP_FOR_EXAMS
+    return make_s_msg_obj(s_msg=s_msg, keyboard=keyboard)
+
+def prepod_timetable_exams(user_id):
+    s_msg = "Введи имя преподавателя"
+    keyboard = keyboards['main']
+    users_storage[user_id]['state'] = state.WAIT_PREPOD_NAME_FOR_EXAMS
+    return make_s_msg_obj(s_msg=s_msg, keyboard=keyboard)
+
+
 commands = {
     'расписание': timetable,
     'дополнительно': additional,
     'info': information,
     'расписание преподователей': prepod_timetable,
     'изменить вывод расписания': switch_timetable_output_mode,
+    'расписание экзаменов': timetable_exams,
+    'расписание экзаменов преподователей': prepod_timetable_exams,
     'назад': home
     }
 

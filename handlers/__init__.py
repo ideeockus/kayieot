@@ -1,6 +1,7 @@
 from . import timetable_handler
 from . import prepod_timetable_handler
 from . import command_handler
+from . import timetable_exams_handler, prepod_timetable_exams_handler
 from storage import users_storage, keyboards, make_s_msg_obj, state
 import logging
 #from enum import Enum
@@ -44,6 +45,27 @@ def handle(event):
             keyboard = keyboards['main']
             return make_s_msg_obj(s_msg=s_msg, keyboard=keyboard)
         s_msg_obj = prepod_timetable_handler.handle(event)
+        return s_msg_obj
+
+
+
+#расписание экзаменов
+    if(users_storage[user_id]['state']==state.WAIT_GROUP_FOR_EXAMS): # 
+        print("user stat is wait for group for exams")
+        if(len(r_msg)>150): # лишком длинное сообщение
+            s_msg = "Напиши покороче, пожалуйста"
+            keyboard = keyboards['main']
+            return make_s_msg_obj(s_msg=s_msg, keyboard=keyboard)
+        s_msg_obj = timetable_exams_handler.handle(event)
+        return s_msg_obj
+
+    if(users_storage[user_id]['state']==state.WAIT_PREPOD_NAME_FOR_EXAMS): # 
+        print("user stat is wait for prepod name for exams")
+        if(len(r_msg)>150): # cлишком длинное сообщение
+            s_msg = "Напиши покороче, пожалуйста"
+            keyboard = keyboards['main']
+            return make_s_msg_obj(s_msg=s_msg, keyboard=keyboard)
+        s_msg_obj = prepod_timetable_exams_handler.handle(event)
         return s_msg_obj
 
 

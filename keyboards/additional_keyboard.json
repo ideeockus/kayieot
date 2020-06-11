@@ -3,6 +3,20 @@
     "buttons": [
         [{
             "action": {
+                "type": "text",
+                "label": "расписание экзаменов"
+            },
+            "color": "primary"
+        }],
+        [{
+            "action": {
+                "type": "text",
+                "label": "расписание экзаменов преподователей"
+            },
+            "color": "primary"
+        }],
+        [{
+            "action": {
             "type": "text",
             "label": "назад"
             }

@@ -15,6 +15,8 @@ class state(Enum):
     START = "state_start"
     INACTION = "state_inaction"
     WAIT_PREPOD_NAME = "state_wait_for_prepod_name"
+    WAIT_GROUP_FOR_EXAMS = "state_wait_for_group_for_exams"
+    WAIT_PREPOD_NAME_FOR_EXAMS = "state_wait_for_prepod_name_for_exams"
 
 """def make_s_msg_obj(s_msg, keyboard):
     s_msg_obj = { 's_msg': s_msg, 'keyboard':keyboard }
