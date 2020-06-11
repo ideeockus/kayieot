@@ -18,19 +18,19 @@ def handle(event):
     if(len(prepods_list)<1):
         s_msg = "Не могу найти преподавателя "+r_msg
         keyboard = keyboards['main']
-        users_storage[user_id]['state'] = state.WAIT_PREPOD_NAME
+        users_storage[user_id]['state'] = state.WAIT_PREPOD_NAME_FOR_EXAMS
         #s_msg_obj = make_s_msg_obj(s_msg, keyboard)
         #return s_msg_obj
     if(len(prepods_list)>1 and len(prepods_list)<=6):
         s_msg = "уточните, пожалуйста"
         keyboard = make_optionprepod_keyboard(prepods_list)
-        users_storage[user_id]['state'] = state.WAIT_PREPOD_NAME
+        users_storage[user_id]['state'] = state.WAIT_PREPOD_NAME_FOR_EXAMS
         #s_msg_obj = make_s_msg_obj(s_msg, keyboard)
         #return s_msg_obj
     if(len(prepods_list)>6):
         s_msg = "слишком много вариантов, уточните"
         keyboard = keyboards['main']
-        users_storage[user_id]['state'] = state.WAIT_PREPOD_NAME
+        users_storage[user_id]['state'] = state.WAIT_PREPOD_NAME_FOR_EXAMS
         #s_msg_obj = make_s_msg_obj(s_msg, keyboard)
         #return s_msg_obj
     if(len(prepods_list)==1):

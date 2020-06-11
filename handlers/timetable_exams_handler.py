@@ -18,19 +18,19 @@ def handle(event):
     if(len(groups_list)<1):
         s_msg = "Не могу найти группу "+r_msg
         keyboard = keyboards['main']
-        users_storage[user_id]['state'] = state.WAIT_GROUP
+        users_storage[user_id]['state'] = state.WAIT_GROUP_FOR_EXAMS
         #s_msg_obj = make_s_msg_obj(s_msg, keyboard)
         #return s_msg_obj
     if(len(groups_list)>1 and len(groups_list)<=10):
         s_msg = "уточните, пожалуйста"
         keyboard = make_optiongroup_keyboard(groups_list)
-        users_storage[user_id]['state'] = state.WAIT_GROUP
+        users_storage[user_id]['state'] = state.WAIT_GROUP_FOR_EXAMS
         #s_msg_obj = make_s_msg_obj(s_msg, keyboard)
         #return s_msg_obj
     if(len(groups_list)>10):
         s_msg = "нужно уточнить группу"
         keyboard = keyboards['main']
-        users_storage[user_id]['state'] = state.WAIT_GROUP
+        users_storage[user_id]['state'] = state.WAIT_GROUP_FOR_EXAMS
         #s_msg_obj = make_s_msg_obj(s_msg, keyboard)
         #return s_msg_obj
     if(len(groups_list)==1):
